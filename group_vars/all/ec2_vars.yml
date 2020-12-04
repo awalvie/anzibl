@@ -5,3 +5,4 @@ zone: ap-south-1a
 group: default
 image: ami-08f63db601b82ff5f
 machine: t2.micro
+subnet_id: subnet-5ef2e136
