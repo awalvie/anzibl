@@ -1,0 +1,8 @@
+count: 1
+key_name: anzibl
+region: ap-south-1
+zone: ap-south-1a
+group: default
+image: ami-08f63db601b82ff5f
+machine: t2.micro
+
