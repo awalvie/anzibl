@@ -39,6 +39,11 @@ anzibl is a devops assignment for an internship at sendpost.io. The objectives a
 - [-] Refactor code to move `aws` things to a separate role
 	- Can't do this. Since we don't have a text file with all our hosts, we're dependent on the playbook variable `ec2hosts` for fetching the details for our aws machines. So the rest of the actions can then be put into roles.
 - [x] Figure out how to connect to the instance and do things on it
-- [ ] Use ansible galaxy to find roles for both prometheus and go and setup requirements file to install them.
-- [ ] Test to see if they work
+- [x] Make the `aws` deployment process idempotent.
+- [x] Use ansible galaxy to find roles for both prometheus and go and setup requirements file to install them.
+- [x] Test to see if they work
 - [ ] Write an HTTP server in go with the ping endpoint
+
+### TODOs
+
+- [ ] Create a new security group during deployment 
