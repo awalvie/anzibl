@@ -1,0 +1,10 @@
+# from galaxy
+
+# AWS module
+- name: amazon.aws
+
+# Golang role
+- name: gantsign.golang
+
+# Prometheus role
+- name: cloudalchemy.prometheus
