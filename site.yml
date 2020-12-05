@@ -15,6 +15,12 @@
         force: false
       with_file: ~/.ssh/id_rsa.pub
 
+    # credits to a life saving gist, makes the provisioning process idempotent
+    # https://gist.github.com/likwid/bd1c62c6adbbe6853114
+    - name: Amazon EC2 | Query for existing instance
+      command: aws ec2 describe-instances --region {{ region }} --filter Name=tag:Name,Values={{ hostname }} --query "Reservations[].Instances[].PublicIpAddress" --output text
+      register: public_ip
+
     - name: Amazon EC2 | Provision Instance
       ec2:
         key_name: "{{ key_name }}"
@@ -26,25 +32,31 @@
         wait: true
         vpc_subnet_id: "{{ subnet_id }}"
         assign_public_ip: yes
-        exact_count: "{{ exact_count }}" # makes it idempotent
+        exact_count: "{{ exact_count }}"
         count_tag:
-            Name: Demo
+            Name: "{{ hostname }}"
         instance_tags:
-            Name: Demo
-      register: ec2
+            Name: "{{ hostname }}"
+      when: public_ip == ''
+
+    - name: Amazon EC2 | Query for new instance
+      command: aws ec2 describe-instances --region {{ region }} --filter Name=tag:Name,Values={{ hostname }} --query "Reservations[].Instances[].PublicIpAddress" --output text
+      register: public_ip
+
+    - name: Amazon ECS | Set fact for ip address
+      set_fact:
+        instance_public_ip : "{{ public_ip.stdout }}"
 
     - name: Amazon EC2 | Add new instance to host group
       add_host:
-        hostname: "{{ item.public_ip }}"
+        hostname: "{{ instance_public_ip }}"
         groupname: launched
-      loop: "{{ ec2.instances }}"
 
     - name: Amazon EC2 | Wait for SSH to come up
-      delegate_to: "{{ item.public_dns_name }}"
+      delegate_to: "{{ instance_public_ip }}"
       wait_for_connection:
-        delay: 60
         timeout: 320
-      loop: "{{ ec2.instances }}"
+      loop: "{{ launched }}"
 
 - name: Configure instance
   hosts: launched
