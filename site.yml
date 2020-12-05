@@ -37,7 +37,7 @@
             Name: "{{ hostname }}"
         instance_tags:
             Name: "{{ hostname }}"
-      when: public_ip == ''
+      when: public_ip.stdout == ''
 
     - name: Amazon EC2 | Query for new instance
       command: aws ec2 describe-instances --region {{ region }} --filter Name=tag:Name,Values={{ hostname }} --query "Reservations[].Instances[].PublicIpAddress" --output text
@@ -55,6 +55,7 @@
     - name: Amazon EC2 | Wait for SSH to come up
       delegate_to: "{{ instance_public_ip }}"
       wait_for_connection:
+        delay: 60
         timeout: 320
       loop: "{{ launched }}"
 
