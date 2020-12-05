@@ -9,10 +9,10 @@
     - include_vars: group_vars/all/ec2_vars.yml
 
     - name: Amazon EC2 | Create Key Pair
-      ec2_key:
+      amazon.aws.ec2_key:
         name: "{{ key_name }}"
-        region: "{{ region }}"
         key_material: "{{ item }}"
+        force: false
       with_file: ~/.ssh/id_rsa.pub
 
     - name: Amazon EC2 | Provision Instance
@@ -23,9 +23,9 @@
         group: "{{ group }}"
         instance_type: "{{ machine }}"
         image: "{{ image }}"
+        wait: true
         vpc_subnet_id: "{{ subnet_id }}"
         assign_public_ip: yes
-        wait: true
         exact_count: "{{ exact_count }}" # makes it idempotent
         count_tag:
             Name: Demo
@@ -36,7 +36,7 @@
     - name: Amazon EC2 | Add new instance to host group
       add_host:
         hostname: "{{ item.public_ip }}"
-        groupname: ec2hosts
+        groupname: launched
       loop: "{{ ec2.instances }}"
 
     - name: Amazon EC2 | Wait for SSH to come up
@@ -45,3 +45,13 @@
         delay: 60
         timeout: 320
       loop: "{{ ec2.instances }}"
+
+- name: Configure instance
+  hosts: launched
+  become: True
+  connection: ssh
+  remote_user: ubuntu
+  gather_facts: True
+  roles:
+    - cloudalchemy.prometheus
+    - gantsign.golang
