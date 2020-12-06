@@ -68,6 +68,7 @@
   roles:
     - gantsign.golang
     - webserver
-    - prometheus
     - blackbox_exporter
     - node_exporter
+    - alertmanager
+    - prometheus

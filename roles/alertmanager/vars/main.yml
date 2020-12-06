@@ -1,0 +1,6 @@
+---
+serviceName: "alertmanager"
+userId: "alertmanager"
+groupId: "alertmanager"
+exec_command: "/usr/local/bin/alertmanager --config.file=/etc/alertmanager/alertmanager.yml --web.external-url http://localhost:9093"
+version: 0.21.0

@@ -1,0 +1,16 @@
+global:
+  smtp_smarthost: 'localhost:25'
+  smtp_from: 'agrawal.vishesh.178@gmail.com'
+  smtp_require_tls: false
+
+route:
+  group_by: ['instance', 'severity']
+  group_wait: 30s
+  group_interval: 5m
+  repeat_interval: 3h
+  receiver: team-1
+
+receivers:
+  - name: 'team-1'
+    email_configs:
+      - to: 'agrawal.vishesh.178@gmail.com'
