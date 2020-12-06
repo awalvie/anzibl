@@ -43,12 +43,14 @@ anzibl is a devops assignment for an internship at sendpost.io. The objectives a
 - [x] Use ansible galaxy to find roles for both prometheus and go and setup requirements file to install them.
 - [x] Test to see if they work.
 - [x] Make a small diagram to figure out how the architecture looks.
-- [ ] Write an HTTP server in go with the ping endpoint locally.
-- [ ] Create a `systemd` service for the webserver.
-- [ ] Use `node_exporter` and `blackbox_exporter` to monitor the webserver.
+- [x] Write an HTTP server in go with the ping endpoint locally.
+- [x] Create a `systemd` service for the webserver.
+- [x] Deploy this using ansible 
+- [ ] Use `node_exporter` and `blackbox_exporter` to monitor the webserver locally.
 - [ ] Register both of the ^ to Alertmanager
 - [ ] Setup SMTP for sending out emails
 - [ ] Send emails via Alertmanager
+- [ ] Rejoice!
 
 #### Architecture
 ![](./static/architecture.jpg)
@@ -56,3 +58,4 @@ anzibl is a devops assignment for an internship at sendpost.io. The objectives a
 ### TODOs
 
 - [ ] Create a new security group during deployment.
+- [ ] If instance already exists don't wait for ssh to come up
