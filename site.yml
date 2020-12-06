@@ -69,5 +69,5 @@
     - gantsign.golang
     - webserver
     - prometheus
-    - prometheus_blackbox_exporter
-    - prometheus_node_exporter
+    - blackbox_exporter
+    - node_exporter
