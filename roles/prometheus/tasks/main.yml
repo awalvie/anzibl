@@ -1,8 +1,8 @@
-- name: Creating prometheus user group
+- name: Prometheus | Creating prometheus user group
   group: name="{{groupId}}"
   become: true
 
-- name: Creating prometheus user
+- name: Prometheus | Creating prometheus user
   user:
     name: "{{userId}}"
     group: "{{groupId}}"
@@ -12,13 +12,13 @@
     createhome: "no"
     state: present
 
-- name: Install prometheus
+- name: Prometheus | Install prometheus
   unarchive:
     src: "https://github.com/prometheus/prometheus/releases/download/v{{ version }}/prometheus-{{ version }}.linux-amd64.tar.gz"
     dest: /tmp/
     remote_src: yes
 
-- name: Copy prometheus file to bin
+- name: Prometheus | Copy prometheus file to bin
   copy:
     src: "/tmp/prometheus-{{ version }}.linux-amd64/prometheus"
     dest: "/usr/local/bin/prometheus"
@@ -27,12 +27,12 @@
     remote_src: yes
     mode: 0755
 
-- name: Delete prometheus tmp folder
+- name: Prometheus | Delete prometheus tmp folder
   file:
     path: '/tmp/prometheus-{{ version }}.linux-amd64'
     state: absent
 
-- name: Creates directory
+- name: Prometheus | Creates directory
   file:
     path: "/data/prometheus/"
     state: directory
@@ -40,7 +40,7 @@
     group: "{{groupId}}"
     mode: 0755
 
-- name: Creates directory
+- name: Prometheus | Creates directory
   file:
     path: "/etc/prometheus/"
     state: directory
@@ -48,24 +48,24 @@
     group: "{{groupId}}"
     mode: 0755
 
-- name: config file
+- name: Prometheus | config file
   template:
     src: prometheus.conf.j2
     dest: /etc/prometheus/prometheus.conf
 
-- name: Copy systemd init file
+- name: Prometheus | Copy systemd init file
   template:
     src: init.service.j2
     dest: /etc/systemd/system/prometheus.service
   notify: systemd_reload
 
-- name: Start prometheus service
+- name: Prometheus | Start prometheus service
   service:
     name: prometheus
     state: started
     enabled: yes
 
-- name: Check if prometheus is accessible
+- name: Prometheus | Check if prometheus is accessible
   uri:
     url: http://localhost:9090
     method: GET
