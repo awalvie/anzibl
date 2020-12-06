@@ -67,8 +67,8 @@
   gather_facts: True
   roles:
     - gantsign.golang
+    - prometheus
     - webserver
     - blackbox_exporter
     - node_exporter
     - alertmanager
-    - prometheus

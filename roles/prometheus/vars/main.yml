@@ -2,5 +2,5 @@
 serviceName: "prometheus"
 userId: "prometheus"
 groupId: "prometheus"
-exec_command: "/usr/local/bin/prometheus --config.file=/etc/prometheus/prometheus.conf --web.external-url http://localhost"
+exec_command: "/usr/local/bin/prometheus --config.file=/etc/prometheus/prometheus.conf --web.external-url http://localhost:9093"
 version: "2.3.2"
