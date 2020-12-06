@@ -1,0 +1,6 @@
+# from ansible galaxy
+collections:
+- community.aws
+
+roles:
+- gantsign.golang
