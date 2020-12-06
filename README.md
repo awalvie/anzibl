@@ -24,8 +24,8 @@ anzibl is a devops assignment for an internship at sendpost.io. The objectives a
 - [x] Read up on how to write a HTTP Server in Golang
 - [x] Write the server with a ping endpoint
 - [x] Figure out how to monitor the server with prometheus
-- [ ] Setup the alerts in prometheus
-- [ ] Try out the architecture locally to test if it works
+- [x] Setup the alerts in prometheus
+- [x] Try out the architecture locally to test if it works
 - [ ] Automate with ansible
 
 ### Steps taken
@@ -49,7 +49,7 @@ anzibl is a devops assignment for an internship at sendpost.io. The objectives a
 - [x] Setup `prometheus` as a role
 - [x] Setup `node_exporter` as a role and register it with `prometheus`
 - [x] Setup `blackbox_exporter` as a role and register it with `prometheus`
-- [ ] Register both of the ^ to Alertmanager
+- [x] Register both of the ^ to Alertmanager
 - [ ] Setup SMTP for sending out emails
 - [ ] Send emails via Alertmanager
 - [ ] Rejoice!
