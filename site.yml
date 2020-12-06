@@ -66,5 +66,5 @@
   remote_user: ubuntu
   gather_facts: True
   roles:
-    - cloudalchemy.prometheus
     - gantsign.golang
+    - webserver

@@ -1,0 +1,38 @@
+- name: Webserver | Create webserver user group
+  group: name="{{ group_id }}"
+  become: true
+
+- name: Webserver | Create webserver user
+  user:
+      name: "{{ user_id }}"
+      group: "{{ group_id }}"
+      system: yes
+      shell: "/sbin/nologin"
+      comment: "{{ user_id }} nologin user"
+      createhome: "no"
+      state: present
+
+- name: Webserver | Copy webserver binary to bin
+  copy:
+    src: webserver
+    dest: "/usr/local/bin/webserver"
+    owner: "{{ user_id }}"
+    group: "{{ group_id }}"
+    mode: 0755
+
+- name: Webserver | Copy systemd init file
+  template:
+      src: init.service.j2
+      dest: /etc/systemd/system/webserver.service
+
+- name: Webserver | Start webserver service
+  service:
+    name: webserver
+    state: started
+    enabled: yes
+
+- name: Webserver | Check if endpoint works
+  uri:
+    url: http://localhost:2112/ping
+    method: GET
+    status_code: 200

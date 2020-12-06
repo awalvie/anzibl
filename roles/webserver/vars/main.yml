@@ -1,0 +1,5 @@
+service_name: "webserver"
+user_id: "webserver"
+group_id: "webserver"
+webserver_dest:
+exec_command: "/usr/local/bin/webserver"

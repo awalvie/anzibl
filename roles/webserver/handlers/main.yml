@@ -1,0 +1,9 @@
+- name: Restart the webserver
+  service:
+    name: webserver
+    state: restarted
+  listen: event_restart_webserver
+
+- name: Reload systemd
+  command: systemctl daemon-reload
+  listen: systemd_reload
