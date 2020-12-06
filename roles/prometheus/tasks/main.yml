@@ -48,10 +48,15 @@
     group: "{{groupId}}"
     mode: 0755
 
-- name: Prometheus | config file
+- name: Prometheus | Prometheus config file
   template:
     src: prometheus.conf.j2
     dest: /etc/prometheus/prometheus.conf
+
+- name: Prometheus | Prometheus Rules file
+  template:
+    src: alert.rules.j2
+    dest: /etc/prometheus/alert.rules.yml
 
 - name: Prometheus | Copy systemd init file
   template:
