@@ -6,7 +6,7 @@ anzibl is a devops assignment for an internship at sendpost.io. The objectives a
 
 - [x] Create a small EC2 or DO Instance
 - [x] Run a small HTTP server (preferably in Golang) with a ping endpoint
-- [ ] Run prometheus on the same machine to monitor ping endpoint and raise an alert over email when either:
+- [x] Run prometheus on the same machine to monitor ping endpoint and raise an alert over email when either:
 	- HTTP server process is crashed
 	- Ping endpoint is not responding
 
@@ -50,9 +50,10 @@ anzibl is a devops assignment for an internship at sendpost.io. The objectives a
 - [x] Setup `node_exporter` as a role and register it with `prometheus`
 - [x] Setup `blackbox_exporter` as a role and register it with `prometheus`
 - [x] Register both of the ^ to Alertmanager
-- [ ] Setup SMTP for sending out emails
-- [ ] Send emails via Alertmanager
-- [ ] Rejoice!
+- [x] Setup SMTP for sending out emails
+- [x] Send emails via Alertmanager
+- [x] Rejoice!
+- [ ] Clean up the README
 
 #### Architecture
 ![](./static/architecture.jpg)
