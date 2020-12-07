@@ -1,0 +1,3 @@
+# encrypted sasl password
+sasl_username: <sasl_username>
+sasl_password: <sasl_password>

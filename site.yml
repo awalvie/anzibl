@@ -1,4 +1,4 @@
-# tesing.yml
+# main playbook
 
 - name: Setup servers on Amazon EC2 machines
   hosts: localhost
@@ -65,17 +65,10 @@
   connection: ssh
   remote_user: ubuntu
   gather_facts: True
+  var_files: "./group_vars/all/postfix.yml"
   roles:
     - oefenweb.postfix
   vars:
-    # encrypted sasl password
-    sasl_password: !vault |
-          $ANSIBLE_VAULT;1.1;AES256
-          66623233383564363532613366666231643163623931383366386165336438383035343032396664
-          3139616361363638383661643065666638376435636634380a386466323436353062373161353262
-          65633761323938353635623963346336396138316333376330383061396538353761626263643865
-          3564343630376665610a666631623864613865373266663032353564316563656131623530646432
-          34613634353963353638363430313237336336323833303033366463306433626136
     postfix_mynetworks:
         - '127.0.0.0/8'
         - '[::ffff:127.0.0.0]/104'
@@ -89,7 +82,7 @@
     postfix_relayhost: smtp.gmail.com
     postfix_smtp_tls_cafile: /etc/ssl/certs/ca-certificates.crt
     postfix_relaytls: true
-    postfix_sasl_user: 'agrawal.vishesh.178@gmail.com'
+    postfix_sasl_user: '{{ sasl_username }}'
     postfix_sasl_password: '{{ sasl_password }}'
 
 - name: Configure instance

@@ -1,6 +1,6 @@
 global:
   smtp_smarthost: 'localhost:25'
-  smtp_from: 'agrawal.vishesh.178@gmail.com'
+  smtp_from: '{{ sasl_username }}'
   smtp_require_tls: false
 
 route:
@@ -13,4 +13,4 @@ route:
 receivers:
   - name: 'team-1'
     email_configs:
-      - to: 'agrawal.vishesh.178@gmail.com'
+      - to: '{{ sasl_username }}'

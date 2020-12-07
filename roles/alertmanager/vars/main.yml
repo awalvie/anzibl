@@ -1,4 +1,5 @@
 ---
+sasl_username: <sasl_username>
 serviceName: "alertmanager"
 userId: "alertmanager"
 groupId: "alertmanager"
