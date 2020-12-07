@@ -65,9 +65,9 @@ Set your `sasl_username` and `sasl_password` in `group_vars/all/postfix.yml`
 - For `alertmanager`
 Set you `sasl_username` in `roles/alertmanager/vars/main.yml`
 
-- Finally, let it rip
+#### Finally, let it rip
 ```bash
-$ AWS_PROFILE=work ansible-playbook site.yml 
+$ AWS_PROFILE=work ansible-playbook site.yml
 ```
 
 
