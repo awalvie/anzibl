@@ -65,7 +65,7 @@
   connection: ssh
   remote_user: ubuntu
   gather_facts: True
-  var_files: "./group_vars/all/postify.yml"
+  var_files: "./group_vars/all/postfix.yml"
   roles:
     - oefenweb.postfix
   vars:
