@@ -20,6 +20,7 @@ scrape_configs:
     scrape_interval: 5s
     static_configs:
       - targets: ['localhost:9100']
+      - targets: ['localhost:2112']
 
   - job_name: 'blackbox'
     metrics_path: /probe
