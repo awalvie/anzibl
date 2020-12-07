@@ -70,7 +70,9 @@ Set you `sasl_username` in `roles/alertmanager/vars/main.yml`
 $ AWS_PROFILE=work ansible-playbook site.yml 
 ```
 
-I documented all the steps I took consistently which was the sole reason why I was able to accomplish the task. You can find it in [STEPS_TAKEN.md](./STEPS_TAKEN.md)
+
+### Steps taken to make the project
+I documented all the steps I took consistently which was the sole reason why I was able to accomplish the task. You can find it in [steps_taken](./STEPS_TAKEN.md)
 
 ### Screenshots
 
